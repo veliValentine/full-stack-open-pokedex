@@ -1,0 +1,18 @@
+name: healthcheck
+# run health-test once a year. Don't want to use any more free heroku hours
+# test fails when can not access site https://pokedex-fs-part11.herokuapp.com/health
+on:
+  schedule:
+    - cron: '0 0 1 1 *'
+
+jobs:
+  a_test_job:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v1.2
+        with:
+          url: https://pokedex-fs-part11.herokuapp.com/health
+          follow-redirect: no
+          max-attempts: 2
+          retry-delay: 5s

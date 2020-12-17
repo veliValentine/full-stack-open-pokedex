@@ -36,7 +36,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          fields: repo,message,author,took
+          fields: repo,message,took
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: ${{ success() }}
@@ -44,7 +44,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          fields: action,repo,message,commit,author,took
+          fields: action,repo,message,commit,took
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: ${{ failure() }}
